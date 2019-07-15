@@ -238,7 +238,14 @@ public class CountryList
                 tempCountryList.add(c);
             }
         }
-
+        tempCountryList.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
         return tempCountryList;
     }
+
+    public ArrayList<Country> getAlphabeticalCountries()
+    {
+        countryList.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
+        return countryList;
+    }
+
 }
