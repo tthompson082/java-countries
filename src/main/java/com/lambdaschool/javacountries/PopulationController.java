@@ -41,4 +41,25 @@ public class PopulationController
         rtnCtry.sort((o1, o2) -> (o2.getPopulation() - o1.getPopulation()));
         return new ResponseEntity<>(rtnCtry.get(0), HttpStatus.OK);
     }
+
+    //STRETCH
+    // localhost:8080/population/median
+    // return the country with the median population
+    @GetMapping(value = "/median", produces = {"application/json"})
+    public  ResponseEntity<?> medianPopulation()
+    {
+        // to get the median first add all of the countries to rtnCtry
+        ArrayList<Country> rtnCtry = JavacountriesApplication.ourCountryList.findCountries(c -> c.getPopulation() > 0);
+        // then sort by population
+        rtnCtry.sort((o1,o2) -> (o2.getPopulation() - o1.getPopulation()));
+        // finally create an if statement to handle the possibility of there being an even number of elements in the list
+        if ((rtnCtry.size()/2) % 2 == 0)
+        {
+            return new ResponseEntity<>(rtnCtry.get(rtnCtry.size()/2), HttpStatus.OK);
+        } else
+        {
+            return new ResponseEntity<>(rtnCtry.get(rtnCtry.size()/2 + 1), HttpStatus.OK);
+        }
+    }
 }
+
