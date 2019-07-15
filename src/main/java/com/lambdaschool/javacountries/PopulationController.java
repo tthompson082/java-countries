@@ -53,7 +53,7 @@ public class PopulationController
         // then sort by population
         rtnCtry.sort((o1,o2) -> (o2.getPopulation() - o1.getPopulation()));
         // finally create an if statement to handle the possibility of there being an even number of elements in the list
-        if ((rtnCtry.size()/2) % 2 == 0)
+        if ((rtnCtry.size()%2) == 0)
         {
             return new ResponseEntity<>(rtnCtry.get(rtnCtry.size()/2 + (1/2)), HttpStatus.OK);
         } else
