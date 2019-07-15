@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CountryList
 {
-    // create a 
+    // create a
     public ArrayList<Country> countryList = new ArrayList<>();
 
     // add the countries to the list
@@ -211,5 +211,34 @@ public class CountryList
         countryList.add(new Country("U.S. Virgin Islands",104909,350,42));
         countryList.add(new Country("Antigua and Barbuda",104084,440,32));
         countryList.add(new Country("Seychelles",95702,460,36));
+    }
+
+    // method to find a specific country given a set of parameters to check
+    public Country findCountry(CheckCountry tester)
+    {
+        for (Country c: countryList)
+        {
+            if (tester.test(c))
+            {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    // method to find all countries that match the parameters given
+    public ArrayList<Country> findCountries(CheckCountry tester)
+    {
+        ArrayList<Country> tempCountryList = new ArrayList<>();
+
+        for (Country c: countryList)
+        {
+            if (tester.test(c))
+            {
+                tempCountryList.add(c);
+            }
+        }
+
+        return tempCountryList;
     }
 }
