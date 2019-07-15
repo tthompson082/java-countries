@@ -41,4 +41,24 @@ public class AgeController
         rtnCtry.sort((o1, o2) -> o2.getMedianAge() - o1.getMedianAge());
         return new ResponseEntity<>(rtnCtry.get(0), HttpStatus.OK);
     }
+
+    //STRETCH
+    // localhost:8080/age/median
+    // return the country with the median median age
+    @GetMapping(value = "/median", produces = {"application/json"})
+    public  ResponseEntity<?> medianPopulation()
+    {
+        // to get the median first add all of the countries to rtnCtry
+        ArrayList<Country> rtnCtry = JavacountriesApplication.ourCountryList.findCountries(c -> c.getPopulation() > 0);
+        // then sort by median age
+        rtnCtry.sort((o1,o2) -> (o2.getMedianAge() - o1.getMedianAge()));
+        // finally create an if statement to handle the possibility of there being an even number of elements in the list
+        if ((rtnCtry.size()/2) % 2 == 0)
+        {
+            return new ResponseEntity<>(rtnCtry.get(rtnCtry.size()/2 + (1/2)), HttpStatus.OK);
+        } else
+        {
+            return new ResponseEntity<>(rtnCtry.get(rtnCtry.size()/2), HttpStatus.OK);
+        }
+    }
 }

@@ -55,10 +55,10 @@ public class PopulationController
         // finally create an if statement to handle the possibility of there being an even number of elements in the list
         if ((rtnCtry.size()/2) % 2 == 0)
         {
-            return new ResponseEntity<>(rtnCtry.get(rtnCtry.size()/2), HttpStatus.OK);
+            return new ResponseEntity<>(rtnCtry.get(rtnCtry.size()/2 + (1/2)), HttpStatus.OK);
         } else
         {
-            return new ResponseEntity<>(rtnCtry.get(rtnCtry.size()/2 + 1), HttpStatus.OK);
+            return new ResponseEntity<>(rtnCtry.get(rtnCtry.size()/2), HttpStatus.OK);
         }
     }
 }
